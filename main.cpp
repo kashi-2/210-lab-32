@@ -42,42 +42,32 @@ int main() {
         displayLane(lanes[i]);
     }
 
-    //Milestone runs until empty
-    while (!lane.empty()) {
-        int r =rand() % 100;
+    // Simulation loop (milestone 4)
+    for (int time = 1; time <= TIME_PERIODS; time++) {
+        cout << "\nTime: " << time << endl;
 
-        cout << "\nTime: " << timeStep << " "; 
+        // process each lane
+        for (int i = 0; i < NUM_LANES; i++) {
 
-        if (r < 55) {
-            //car pays and than leaves
-            Car frontCar = lane.front();
-            lane.pop_front();
+            cout << "Lane: " << i + 1 << " ";
 
-            cout << "Operation: Car paid: ";
-            frontCar.print();
-            cout << endl;
+            //if lane empty (50/50)
+            if (lanes[i].empty()) {
+                if (rand() % 2 == 0) {
+                    Car c;
+                    lanes[i].push_back(c);
+                    cout << "Joined: ";
+                    c.print();
+                    cout << endl;
+                }
+                else {
+                    cout << "No operation\n";
+                }
+                continue;
+            }
+
+            int r = rand() % 100;
         }
-        else {
-            // new car joins 
-            Car newCar;
-            lane.push_back(newCar);
-
-            cout << "Operation: Joined lane: ";
-            newCar.print();
-            cout << endl;
-        }
-
-        cout << "Queue:\n";
-        if (lane.empty()) {
-            cout << "    Empty\n";
-        }
-        else {
-            displayQueue(lane);
-        }
-
-        timeStep++; 
-    }
-    
     return 0;
 }
 
