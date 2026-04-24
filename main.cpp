@@ -16,7 +16,7 @@ int main() {
     srand(time(0));
 
     //Milestone 2: creating array of lanes
-    const int NUM_LANES = 4
+    const int NUM_LANES = 4;
     deque<Car> lanes[NUM_LANES];
     
     //constants 
@@ -67,11 +67,63 @@ int main() {
             }
 
             int r = rand() % 100;
+        //Milestone 5  
+        // Pay
+            if (r < PAY_PROB) {
+                Car c = lanes[i].front();
+                lanes[i].pop_front();
+
+                cout << "Paid: ";
+                c.print();
+                cout << endl;
+            }
+            // Join
+            else if (r < PAY_PROB + JOIN_PROB) {
+                Car c;
+                lanes[i].push_back(c);
+
+                cout << "Joined: ";
+                c.print();
+                cout << endl;
+            }
+            // Switch
+            else {
+                // only if more than 1 lane has cars
+                if (!lanes[i].empty()) {
+                    Car c = lanes[i].back();
+                    lanes[i].pop_back();
+
+                    int newLane;
+                    do {
+                        newLane = rand() % NUM_LANES;
+                    } while (newLane == i);
+
+                    lanes[newLane].push_back(c);
+
+                    cout << "Switched: ";
+                    c.print();
+                    cout << endl;
+                }
+            }
         }
+
+        // print queues after all operations (milestone 4)
+        for (int i = 0; i < NUM_LANES; i++) {
+            cout << "Lane " << i + 1 << " Queue:\n";
+
+            if (lanes[i].empty()) {
+                cout << "    empty\n";
+            }
+            else {
+                displayLane(lanes[i]);
+            }
+        }
+    }
+
     return 0;
 }
 
-//function to display queue
+//function to display function
 void displayQueue(deque<Car>& lane) {
     for (int i = 0; i < lane.size(); i++) {
         cout << "    ";
