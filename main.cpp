@@ -1,5 +1,5 @@
-// Comsc-210 lab 32 || Akashdeep Singh
-// Simulates a toll booth line using std::deque 
+// Comsc-210 lab 33 || Akashdeep Singh
+// Simulates a toll plaza with 4 lanes using std::deque
 
 #include <iostream>
 #include <deque>
@@ -67,6 +67,7 @@ int main() {
             }
 
             int r = rand() % 100;
+        
         //Milestone 5  
         // Pay
             if (r < PAY_PROB) {
@@ -123,8 +124,8 @@ int main() {
     return 0;
 }
 
-//function to display function
-void displayQueue(deque<Car>& lane) {
+//Display function
+void displayLane(deque<Car>& lane) {
     for (int i = 0; i < lane.size(); i++) {
         cout << "    ";
         lane[i].print();
