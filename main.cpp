@@ -10,7 +10,7 @@
 using namespace std;
 
 // function prototypes
-void displayQueue(deque<Car>& lane);
+void displayLane(deque<Car>& lane);
 
 int main() {
     srand(time(0));
@@ -27,18 +27,22 @@ int main() {
     const int JOIN_PROB = 39;
     const int SWITCH_PROB = 15;
 
-    // Milestone 1: initialize deque with 2 cars
-    for (int i = 0; i < INITIAL_SIZE; i++) {
-        Car c;
-        lane.push_back(c);
+    // Milestone 3: Populate each lane with 2 cars
+     for (int i = 0; i < NUM_LANES; i++) {
+        for (int j = 0; j < INITIAL_SIZE; j++) {
+            Car c;
+            lanes[i].push_back(c);
+        }
     }
 
+    // Initial output (milestone 3)
     cout << "Initial queue:\n";
-    displayQueue(lane);
+    for (int i = 0; i < NUM_LANES; i++) {
+        cout << "Lane " << i + 1 << ":\n";
+        displayLane(lanes[i]);
+    }
 
-    int timeStep = 1;
-
-    //Milestone 2: runs until empty
+    //Milestone runs until empty
     while (!lane.empty()) {
         int r =rand() % 100;
 
