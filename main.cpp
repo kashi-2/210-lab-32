@@ -15,9 +15,17 @@ void displayQueue(deque<Car>& lane);
 int main() {
     srand(time(0));
 
+    //Milestone 2: creating array of lanes
+    const int NUM_LANES = 4
+    deque<Car> lanes[NUM_LANES];
+    
+    //constants 
     const int INITIAL_SIZE = 2;
+    const int TIME_PERIODS = 20;
 
-    deque<Car> lane;
+    const int PAY_PROB = 46;
+    const int JOIN_PROB = 39;
+    const int SWITCH_PROB = 15;
 
     // Milestone 1: initialize deque with 2 cars
     for (int i = 0; i < INITIAL_SIZE; i++) {
