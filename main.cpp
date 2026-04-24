@@ -30,14 +30,14 @@ int main() {
 
     int timeStep = 1;
 
-    //Milestone 2 
+    //Milestone 2: runs until empty
     while (!lane.empty()) {
-        int r =raand() % 100;
+        int r =rand() % 100;
 
-        cout << "Time: " << timeStep << " "; 
+        cout << "\nTime: " << timeStep << " "; 
 
         if (r < 55) {
-            
+            //car pays and than leaves
             Car frontCar = lane.front();
             lane.pop_front();
 
@@ -46,6 +46,7 @@ int main() {
             cout << endl;
         }
         else {
+            // new car joins 
             Car newCar;
             lane.push_back(newCar);
 
@@ -54,9 +55,9 @@ int main() {
             cout << endl;
         }
 
-        cout << "Queue: \n";
+        cout << "Queue:\n";
         if (lane.empty()) {
-            cout << " Empty\n";
+            cout << "    Empty\n";
         }
         else {
             displayQueue(lane);
@@ -64,5 +65,15 @@ int main() {
 
         timeStep++; 
     }
+    
     return 0;
+}
+
+//function to display queue
+void displayQueue(deque<Car>& lane) {
+    for (int i = 0; i < lane.size(); i++) {
+        cout << "    ";
+        lane[i].print();
+        cout << endl;
+    }
 }
