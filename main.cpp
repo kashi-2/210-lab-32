@@ -19,7 +19,7 @@ int main() {
 
     deque<Car> lane;
 
-    // initialize deque with 2 cars
+    // Milestone 1: initialize deque with 2 cars
     for (int i = 0; i < INITIAL_SIZE; i++) {
         Car c;
         lane.push_back(c);
